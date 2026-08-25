@@ -1,0 +1,64 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+.footer {
+  width: 100%;
+  position: fixed;   /* ✅ Fixed at bottom */
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(90deg, #0f2027, #203a43, #2c5364);
+  color: #e0e0e0;
+  padding: 12px 0;
+  text-align: center;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.4);
+  z-index: 1000;     /* Keeps it above other content */
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.footer-content p {
+  font-size: 0.85rem;
+  color: #aaa;
+  margin: 0;
+}
+
+.social-icons {
+  display: flex;
+  gap: 18px;
+}
+
+.social-icons a {
+  color: #00ffcc;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-icons a:hover {
+  color: #ffdd57;
+  transform: scale(1.2);
+  text-shadow: 0 0 10px #ffdd57;
+}
+
+/* Animated glowing line */
+.footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 100%;
+  background: linear-gradient(90deg, #00ffcc, #ffdd57, #ff4b2b, #00ffcc);
+  background-size: 300% 100%;
+  animation: glowMove 6s linear infinite;
+}
+
+@keyframes glowMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}

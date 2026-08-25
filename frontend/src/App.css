@@ -1,0 +1,133 @@
+/* Base Layout */
+.app {
+  min-height: 100vh;
+  display: flex;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* Dark Mode */
+.app.dark {
+  background: #1e1e2f;
+  color: #e0e0e0;
+}
+
+/* Light Mode */
+.app.light {
+  background: #f9fafb;
+  color: #222;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 25px 20px;
+}
+
+.app.dark .sidebar {
+  background: #2a2a3d;
+  border-right: 1px solid #444;
+  color: #e0e0e0;
+}
+
+.sidebar-logo {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: #0078d4;
+}
+
+.app.dark .sidebar-logo {
+  color: #00ffcc;
+}
+
+/* Toggle button */
+.theme-toggle {
+  margin-top: 20px;
+  background: #0078d4;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s ease;
+}
+
+.theme-toggle:hover {
+  background: #005fa3;
+}
+
+.app.dark .theme-toggle {
+  background: #00ffcc;
+  color: #1f1c2c;
+}
+
+.app.dark .theme-toggle:hover {
+  background: #00e6b8;
+}
+
+/* Dashboard */
+.dashboard {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 30px;
+  margin-bottom: 80px; /* Prevent overlap with footer */
+}
+
+/* Panels */
+.analysis-panel, .assistant-panel {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border: 1px solid #e5e7eb;
+}
+
+.app.dark .analysis-panel,
+.app.dark .assistant-panel {
+  background: #2a2a3d;
+  border: 1px solid #444;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+}
+
+.analysis-panel h2,
+.assistant-panel h2 {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0078d4;
+}
+
+.app.dark .analysis-panel h2,
+.app.dark .assistant-panel h2 {
+  color: #00ffcc;
+}
+
+/* Footer */
+.footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  background: #ffffff;
+  color: #555;
+  padding: 12px 0;
+  text-align: center;
+  border-top: 1px solid #e5e7eb;
+  box-shadow: 0 -2px 8px rgba(0,0,0,0.05);
+  z-index: 999;
+}
+
+.app.dark .footer {
+  background: #2a2a3d;
+  color: #e0e0e0;
+  border-top: 1px solid #444;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.4);
+}

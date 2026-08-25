@@ -1,0 +1,83 @@
+.upload-card {
+  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.7);
+  max-width: 600px;
+  margin: 40px auto;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  color: #e0e0e0;
+}
+
+h2 {
+  color: #00ffcc;
+  margin-bottom: 10px;
+}
+
+.subtitle {
+  color: #aaa;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.file-input input[type="file"] {
+  display: block;
+  margin: 15px auto;
+  padding: 8px;
+  border: none;
+  border-radius: 6px;
+  background: #1c1c1c;
+  color: #00ffcc;
+  cursor: pointer;
+}
+
+.analyze-btn {
+  background: #00ffcc;
+  color: #1c1c1c;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+}
+
+.analyze-btn:hover {
+  background: #00e6b8;
+  transform: scale(1.05);
+}
+
+.result-box {
+  margin-top: 25px;
+  padding: 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  color: #00ffcc;
+  font-weight: 500;
+  text-align: left;
+}
+
+.score-box {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.score-box h3 {
+  color: #ffdd57;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #1c1c1c;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-top: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.5s ease;
+}
