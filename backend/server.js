@@ -13,44 +13,50 @@ app.use(express.json());
 // Resume routes
 app.use("/api/resumes", resumeRoutes);
 
-// AI Assistant route (LM Studio)
+// AI Assistant route (Gemini)
 app.post("/api/assistant", async (req, res) => {
   try {
-    const { message, model } = req.body;
+    const { message } = req.body;
 
     if (!message || !message.trim()) {
       return res.status(400).json({ error: "A message is required" });
     }
 
-    if (!process.env.LM_STUDIO_URL) {
-      return res.status(500).json({ error: "LM_STUDIO_URL is not configured" });
+    if (!process.env.GEMINI_API_KEY) {
+      return res.status(500).json({ error: "GEMINI_API_KEY is not configured" });
     }
 
-    const response = await fetch(`${process.env.LM_STUDIO_URL}/v1/chat/completions`, {
+    const model = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent?key=${encodeURIComponent(process.env.GEMINI_API_KEY)}`,
+      {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        model: model || process.env.LM_STUDIO_MODEL, // fallback to default
-        messages: [{ role: "user", content: message }]
+        contents: [{ parts: [{ text: message }] }]
       })
-    });
+      }
+    );
 
     const data = await response.json();
     if (!response.ok) {
       return res.status(response.status).json({
-        error: data.error?.message || "LM Studio rejected the request"
+        error: data.error?.message || "Gemini rejected the request"
       });
     }
 
-    const reply = data.choices?.[0]?.message?.content;
+    const reply = data.candidates?.[0]?.content?.parts
+      ?.map((part) => part.text || "")
+      .join("")
+      .trim();
     if (!reply) {
-      return res.status(502).json({ error: "LM Studio returned no assistant reply" });
+      return res.status(502).json({ error: "Gemini returned no assistant reply" });
     }
 
     res.json({ reply });
   } catch (error) {
-    console.error("LM Studio error:", error.message);
-    res.status(502).json({ error: "Could not reach LM Studio. Make sure it is running." });
+    console.error("Gemini error:", error.message);
+    res.status(502).json({ error: "Could not reach Gemini." });
   }
 });
 
